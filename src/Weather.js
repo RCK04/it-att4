@@ -1,16 +1,28 @@
 import React, { useState } from 'react';
 import './App.css';
 import logo from './weather.svg';
+import axios from 'axios';
 
 export default function Weather() {
 
-    const [city, setCity] = useState();
+    const [city, setCity] = useState('');
     const handleCityChange = (event) => {
         setCity(event.target.value);
     }
 
+    const fetchWeather = async () => {
+        try{
+            const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${'6310ed52c1f87447da25b338e8e33eb9'}`);
+            console.log(response);
+
+        }
+        catch{
+
+        }
+    }
+
     const handleClick = () => {
-        
+        fetchWeather();
     }
 
     return (
@@ -25,7 +37,7 @@ export default function Weather() {
                     <span>Cidade</span>
                     <input type='text' placeholder='Nome da cidade' value={city} onChange={handleCityChange} />
                     <div className='button-container'>
-                        <button onnClick={handleClick} >Verificar clima</button>
+                        <button onClick={handleClick} >Verificar clima</button>
                     </div>
                 </div>
             </main>

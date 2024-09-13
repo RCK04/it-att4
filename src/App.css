@@ -1,6 +1,7 @@
 
 .weather-container {
   background-color: black;
+  height: 100dvh;
 
 }
 
@@ -39,4 +40,8 @@
 .button-container{
   width: 100%;
   justify-content: center;
+}
+
+.weather-info{
+  margin-top: 20px
 }

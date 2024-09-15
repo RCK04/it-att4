@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './App.css';
+import './root.css';
 import logo from './weather.svg';
+import cloudy from './cloudy.svg';
 import axios from 'axios';
 
 export default function Weather() {
@@ -32,7 +34,11 @@ export default function Weather() {
     }
 
     const kelvinToCelsius = (kelvin) => {
-        return (kelvin - 273.15).toFixed(1) + "°C";
+        return (kelvin - 273.15).toFixed(0) + "°";
+    }
+
+    const capitalizeFirstLetter = (string) => {
+        return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
     return (
@@ -47,18 +53,29 @@ export default function Weather() {
                     <span>Cidade</span>
                     <input type='text' placeholder='Nome da cidade' value={city} onChange={handleCityChange} />
                     <div className='button-container'>
-                        <button onClick={handleClick} >Verificar clima</button>
+                        <button className='btn' onClick={handleClick} >Verificar clima</button>
                         {weather && <>
                             <div className='weather-info'>
-                                <h3>{weather.data.name}</h3>
-                                <p>Temperatura de {kelvinToCelsius(weather.data.main.temp)}</p>
-                                <p>{weather.data.weather[0].description}</p>
+                                <div className='info-top'>
+                                    <h3>{weather.data.name}</h3>
+                                    <img src={cloudy} />
+                                </div>
+
+                                <div className='info-mid'>
+                                    <span>{kelvinToCelsius(weather.data.main.temp)}</span>
+                                    <p>Temperatura</p>
+                                </div>
+
+                                <div className='info-bottom'>
+                                    <p>{capitalizeFirstLetter(weather.data.weather[0].description)}</p>
+                                </div>
                             </div>
 
                         </>}
 
 
                     </div>
+                    
                 </div>
             </main>
         </div>

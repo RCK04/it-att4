@@ -3,6 +3,10 @@ import './App.css';
 import './root.css';
 import logo from './weather.svg';
 import cloudy from './cloudy.svg';
+import clearSky from './clearSky.svg';
+import rain from './rain.svg';
+import snow from './snow.svg';
+import fog from './fog.svg';
 import axios from 'axios';
 
 export default function Weather() {
@@ -41,6 +45,25 @@ export default function Weather() {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
+    const getWeatherImage = (description) => {
+        const lowerCaseDescription = description.toLowerCase();
+    
+        if (lowerCaseDescription.includes("nublado") || lowerCaseDescription.includes("nuvens")) {
+            return cloudy;
+
+        } else if (lowerCaseDescription.includes("céu limpo")) {
+            return clearSky;
+        } else if (lowerCaseDescription.includes("chuva") || lowerCaseDescription.includes("garoa") ) {
+            return rain;
+        } else if (lowerCaseDescription.includes("neve")) {
+            return snow;
+        } else if (lowerCaseDescription.includes("névoa")) {
+            return fog;
+        }
+
+        return cloudy; 
+    }
+
     return (
         <div className='weather-container'>
             <header>
@@ -58,7 +81,7 @@ export default function Weather() {
                             <div className='weather-info'>
                                 <div className='info-top'>
                                     <h3>{weather.data.name}</h3>
-                                    <img src={cloudy} />
+                                    <img src={getWeatherImage(weather.data.weather[0].description)} />
                                 </div>
 
                                 <div className='info-mid'>

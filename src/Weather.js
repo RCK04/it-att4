@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
-import './App.css';
-import './root.css';
-import logo from './weather.svg';
-import cloudy from './cloudy.svg';
-import clearSky from './clearSky.svg';
-import rain from './rain.svg';
-import snow from './snow.svg';
-import fog from './fog.svg';
+
+import './css/App.css';
+import './css/root.css';
+import Header from './components/header/Header.js';
+import Input from './components/input/Input.js';
+import Button from './components/button/Button.js';
+import WeatherInfo from './components/weatherInfo/WeatherInfo.js';
+import cloudy from './images/cloudy.svg';
+import clearSky from './images/clearSky.svg';
+import rain from './images/rain.svg';
+import snow from './images/snow.svg';
+import fog from './images/fog.svg';
 import axios from 'axios';
 
 export default function Weather() {
@@ -22,7 +26,7 @@ export default function Weather() {
         try{
             const response = await axios.get
             (
-                `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${'6310ed52c1f87447da25b338e8e33eb9&lang=pt'}`
+                `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.REACT_APP_WEATHER_API_KEY}&lang=pt`
             );
             console.log(response);
             setWeather(response);
@@ -66,40 +70,26 @@ export default function Weather() {
 
     return (
         <div className='weather-container'>
-            <header>
-                <img src={logo} className='logo' alt='logo' />
-                <h1>Weather App</h1>
-            </header>
+            <Header></Header>
 
             <main className='show-weather'>
-                <div className='input-container'>
-                    <span>Cidade</span>
-                    <input type='text' placeholder='Nome da cidade' value={city} onChange={handleCityChange} />
+                <Input label="Cidade" value={city} onChange={handleCityChange} placeholder="Nome da cidade"/>
+
                     <div className='button-container'>
-                        <button className='btn' onClick={handleClick} >Verificar clima</button>
+                        <Button label="Verificar clima" onClick={handleClick}></Button>
                         {weather && <>
-                            <div className='weather-info'>
-                                <div className='info-top'>
-                                    <h3>{weather.data.name}</h3>
-                                    <img src={getWeatherImage(weather.data.weather[0].description)} />
-                                </div>
-
-                                <div className='info-mid'>
-                                    <span>{kelvinToCelsius(weather.data.main.temp)}</span>
-                                    <p>Temperatura</p>
-                                </div>
-
-                                <div className='info-bottom'>
-                                    <p>{capitalizeFirstLetter(weather.data.weather[0].description)}</p>
-                                </div>
-                            </div>
+                            <WeatherInfo 
+                                weatherData={weather.data} 
+                                getWeatherImage={getWeatherImage} 
+                                kelvinToCelsius={kelvinToCelsius} 
+                                capitalizeFirstLetter={capitalizeFirstLetter}>
+                            </WeatherInfo>
 
                         </>}
 
 
                     </div>
                     
-                </div>
             </main>
         </div>
     )

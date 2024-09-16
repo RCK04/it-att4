@@ -1,0 +1,13 @@
+.btn{
+    cursor: pointer;
+    background-color: transparent;
+    border: 2px solid var(--black);
+    outline: none;
+    padding: 12px 25px;
+    transition: 0.3s ease-in-out;
+}
+  
+.btn:hover{
+    color: var(--white);
+    background-color: var(--black);
+}

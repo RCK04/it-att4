@@ -1,5 +1,5 @@
 import React from 'react';
-import './weatherInfo.css';
+import './WeatherInfo.css';
 
 
 function WeatherInfo({ weatherData, getWeatherImage, kelvinToCelsius, capitalizeFirstLetter}){

@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 
 import './css/App.css';
 import './css/root.css';
-import Header from './components/header/Header.js';
-import Input from './components/input/Input.js';
-import Button from './components/button/Button.js';
-import WeatherInfo from './components/weatherInfo/WeatherInfo.js';
+import Header from './components/Header/Header.js';
+import Input from './components/Input/Input.js';
+import Button from './components/Button/Button.js';
+import WeatherInfo from './components/WeatherInfo/WeatherInfo.js';
+import WeatherHistory from './components/WeatherHistory/WeatherHistory.js';
 import cloudy from './images/cloudy.svg';
 import clearSky from './images/clearSky.svg';
 import rain from './images/rain.svg';
@@ -19,6 +20,8 @@ export default function Weather() {
     const [city, setCity] = useState('');
      // Utilização do Hook de useState para armazenar os dados do clima pela API e para atualizar o estado
     const [weather, setWeather] = useState('');
+
+    const[history, setHistory] = useState([]);
 
     // Atualiza o estado da "city" com o valor que for colocado no input
     // o "event.target.value" será o novo valor
@@ -46,6 +49,7 @@ export default function Weather() {
     // Ao clicar no botão irá fazer a consulta do clima
     const handleClick = () => {
         fetchWeather();
+        setHistory([...history, city]);
     }
 
     // A API trás o valor da temperatura em Kelvin, então é feito a conversão para Celsius
@@ -102,6 +106,8 @@ export default function Weather() {
 
 
                     </div>
+                    <WeatherHistory history={history} />
+                
                     
             </main>
         </div>

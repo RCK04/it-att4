@@ -3,11 +3,15 @@ import './WeatherHistory.css';
 
 function WeatherHistory({ history }) {
     return (
-        <ul>
-            {history.map((item, index) => (
-                <li key={index}>{item}</li>
-            ))}
-        </ul>
+        <div className='history-container'>
+            <h2>Últimos locais</h2>
+            <ul>
+                {history.map((item, index) => (
+                    <li key={index}>{item}</li>
+                ))}
+            </ul>
+
+        </div>
     );
 }
 

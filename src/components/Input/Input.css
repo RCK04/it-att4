@@ -16,4 +16,5 @@
     width: 100%;
     color: var(--black);
     border-radius: 4px;
+    padding: 0 10px;
   }

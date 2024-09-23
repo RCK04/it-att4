@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import './css/App.css';
 import './css/root.css';
+import './css/reset.css';
 import Header from './components/Header/Header.js';
 import Input from './components/Input/Input.js';
 import Button from './components/Button/Button.js';

@@ -1,17 +1,23 @@
 import React from 'react';
 import './WeatherHistory.css';
+import { FaRegTrashAlt } from 'react-icons/fa';
 
-function WeatherHistory({ history }) {
+function WeatherHistory({ history, removeItem }) {
     return (
+        history.length > 0 && (
         <div className='history-container'>
             <h2>Últimos locais</h2>
             <ul>
                 {history.map((item, index) => (
-                    <li key={index}>{item}</li>
+                    <li key={index}>
+                        {item}
+                        <button onClick={() => removeItem(index)}> <FaRegTrashAlt /> </button>
+                    </li>
                 ))}
             </ul>
 
         </div>
+        )
     );
 }
 

@@ -37,20 +37,28 @@ export default function Weather() {
             (
                 `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.REACT_APP_WEATHER_API_KEY}&lang=pt`
             );
-            console.log(response);
+            
             // Caso seja um retorno positivo setamos o Weather com o valor da "response"
-            setWeather(response);
+            if(response.status === 200){
+                setWeather(response);
+                return true;
+            }
 
         }
         catch(error) {
             console.log("Error ao usar o fetch no dado do clima", error)
         }
+        return false;
     }
 
     // Ao clicar no botão irá fazer a consulta do clima
-    const handleClick = () => {
-        fetchWeather();
-        setHistory([...history, city]);
+    const handleClick = async () => {
+        const isCityExists = await fetchWeather();
+
+        if(isCityExists){
+            setHistory([...history, city]);
+            setCity('');
+        }
     }
 
     // A API trás o valor da temperatura em Kelvin, então é feito a conversão para Celsius
@@ -86,6 +94,11 @@ export default function Weather() {
         return cloudy; 
     }
 
+    const removeItem = (index) => {
+        const update = history.filter((_, i) => i !== index);
+        setHistory(update);
+    }
+
     return (
         <div className='weather-container'>
             <Header></Header>
@@ -107,7 +120,7 @@ export default function Weather() {
 
 
                     </div>
-                    <WeatherHistory history={history} />
+                    <WeatherHistory history={history} removeItem={removeItem} />
                 
                     
             </main>

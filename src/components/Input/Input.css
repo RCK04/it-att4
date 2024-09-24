@@ -18,4 +18,9 @@
     border: 1px solid #8758ff;
     border-radius: 4px;
     padding: 0.5rem 1rem;
+    outline: none;
   }
+
+.input-container input:focus{
+  border-color: #8758ff;
+}

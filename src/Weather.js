@@ -8,6 +8,7 @@ import Input from './components/Input/Input.js';
 import Button from './components/Button/Button.js';
 import WeatherInfo from './components/WeatherInfo/WeatherInfo.js';
 import WeatherHistory from './components/WeatherHistory/WeatherHistory.js';
+import Form from './components/Form/Form.js';
 import cloudy from './images/cloudy.svg';
 import clearSky from './images/clearSky.svg';
 import rain from './images/rain.svg';
@@ -48,7 +49,7 @@ export default function Weather() {
         catch(error) {
             console.log("Error ao usar o fetch no dado do clima", error)
         }
-        
+
         return null;
     }
 
@@ -110,20 +111,31 @@ export default function Weather() {
                 <Input label="Cidade" value={city} onChange={handleCityChange} placeholder="Nome da cidade"/>
 
                     <div className='button-container'>
-                        <Button label="Verificar clima" onClick={handleClick}></Button>
-                        {weather && <>
-                            <WeatherInfo 
-                                weatherData={weather.data} 
-                                getWeatherImage={getWeatherImage} 
-                                kelvinToCelsius={kelvinToCelsius} 
-                                capitalizeFirstLetter={capitalizeFirstLetter}>
-                            </WeatherInfo>
+                        <Button onClick={handleClick}>Verificar clima</Button>
+                        <div className='teste'>
 
-                        </>}
+                            
+                            {weather && <>
+                                <WeatherInfo 
+                                    weatherData={weather.data} 
+                                    getWeatherImage={getWeatherImage} 
+                                    kelvinToCelsius={kelvinToCelsius} 
+                                    capitalizeFirstLetter={capitalizeFirstLetter}>
+                                </WeatherInfo>
+
+                            </>}
 
 
+                            <WeatherHistory history={history} removeItem={removeItem} />
+                        </div>
                     </div>
-                    <WeatherHistory history={history} removeItem={removeItem} />
+
+                    <section className='form-container'>
+                        <Form>
+
+                        </Form>
+
+                    </section>
                 
                     
             </main>

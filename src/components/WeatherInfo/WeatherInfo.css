@@ -1,7 +1,7 @@
 .weather-info{
     background-color: var(--black);
-    width: clamp(250px, 50%, 500px);
-    height: 30%;
+    width: clamp(300px, 50%, 500px);
+
     color: var(--white);
     margin-top: 20px;
     border-radius: 4px;
@@ -16,23 +16,28 @@
     justify-content: space-between;
     align-items: center;
     margin: 10px 25px;
-  
+  }
+
+  .weather-info .info-top h3{
+    width: fit-content;
   }
   
 .weather-info .info-top img{
-    width: 50px;
+    width: 45px;
   }
   
 .weather-info .info-mid, .weather-info .info-mid span{
-    color: var(--yellow);
+    color: var(--main-color);
   }
-  
-.weather-info .info-mid{
-    width: fit-content;
-    margin: 10px 20px;
-  
-  }
-  
+
+.weather-info .main-info{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow-y: hidden;
+}
+    
 .weather-info .info-mid span{
     font-size: 3rem;
   }
@@ -41,10 +46,18 @@
     font-size: 0.8rem;
   }
 
-.weather-info .info-bottom{
-    text-align: center;
-  }
-
   .weather-info .info-bottom p{
     font-size: 0.9rem;
+  }
+
+  @media (max-width: 850px) {
+    .weather-info .info-top{
+      margin: 0;
+      justify-content: center;
+      gap: 60px;
+    }
+
+    .main-info{
+      flex: 1;
+    }
   }

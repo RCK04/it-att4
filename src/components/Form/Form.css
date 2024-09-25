@@ -1,6 +1,65 @@
 .form{
-    width: 100%;
-    background-color: yellow;
-    height: 550px;
+    width: clamp(20%, 100%, 820px);
+    background-color: var(--white);
+    min-height: 550px;
     border-radius: 20px;
+    box-shadow: 0 0 20px 10px rgba(0, 0, 0, .4);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.form .contact{
+    background-color: var(--white);
+}
+
+.form .submit-form{
+    background-color: var(--white);
+    padding: 20px 20px 0 0;
+}
+
+.form .contact .first-text{
+    color: var(--main-color);
+    padding: 20px 20px 0 0;
+    font-size: 1.5rem;
+}
+
+.form .contact .social-links .second-text{
+    font-size: 1.2rem;
+    color: var(--main-color);
+}
+
+.third-text{
+    font-size: 1.5rem;
+    color: var(--main-color);
+}
+
+.image{
+    width: clamp(150px, 100%, 350px);
+}
+
+.social-media{
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.input-box{
+    margin-right: 10px;
+    margin-bottom: 10px;
+    height: 150px;
+}
+
+@media (max-width: 720px) {
+    .form{
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        width: 100%;
+        gap: 15px;
+        min-height: 100vh;
+    }
 }

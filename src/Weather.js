@@ -108,7 +108,7 @@ export default function Weather() {
             <Header></Header>
 
             <main className='show-weather'>
-                <Input label="Cidade" value={city} onChange={handleCityChange} placeholder="Nome da cidade"/>
+                <Input type="text" label="Cidade" value={city} onChange={handleCityChange} placeholder="Nome da cidade"/>
 
                     <div className='button-container'>
                         <Button onClick={handleClick}>Verificar clima</Button>

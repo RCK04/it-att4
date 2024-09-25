@@ -52,6 +52,7 @@
   background-color: var(--main-color);
   width: 100%;
   height: 100vh;
+  border-radius: 40px;
 
 }
 
@@ -59,6 +60,13 @@
   .teste{
     flex-wrap: wrap;
 
+  }
+}
+
+@media (max-width: 720px) {
+  .form-container{
+    background-color: var(--white);
+    overflow-y: hidden;
   }
 }
 

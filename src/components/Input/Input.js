@@ -2,11 +2,11 @@ import React from 'react';
 import './Input.css';
 
 
-function Input({label, value, onChange, placeholder}){
+function Input({label, value, onChange, type, placeholder}){
     return (
         <div className='input-container'>
             <span>{label}</span>
-            <input type='text' placeholder={placeholder} value={value} onChange={onChange} />
+            <input type={type} placeholder={placeholder} value={value} onChange={onChange} />
         </div>
     );
 }

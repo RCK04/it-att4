@@ -131,10 +131,7 @@ export default function Weather() {
                     </div>
 
                     <section className='form-container'>
-                        <Form>
-
-                        </Form>
-
+                        <Form></Form>
                     </section>
                 
                     

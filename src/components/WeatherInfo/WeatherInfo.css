@@ -1,13 +1,12 @@
 .weather-info{
     background-color: var(--black);
-    width: clamp(270px, 50%, 500px);
+    width: clamp(250px, 50%, 500px);
     height: 30%;
     color: var(--white);
     margin-top: 20px;
     border-radius: 4px;
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
     padding: 15px 20px;
     margin-bottom: .8rem; 
   }
@@ -40,4 +39,12 @@
   
 .weather-info .info-mid p{
     font-size: 0.8rem;
+  }
+
+.weather-info .info-bottom{
+    text-align: center;
+  }
+
+  .weather-info .info-bottom p{
+    font-size: 0.9rem;
   }

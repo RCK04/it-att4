@@ -7,14 +7,17 @@ function WeatherHistory({ history, removeItem }) {
         history.length > 0 && (
         <div className='history-container'>
             <h2>Últimos locais</h2>
-            <ul>
-                {history.map((item, index) => (
-                    <li key={index}>
-                        {item}
-                        <button onClick={() => removeItem(index)}> <FaRegTrashAlt /> </button>
-                    </li>
-                ))}
-            </ul>
+            <div className='scroll-container'>
+                <ul>
+                    {history.map((item, index) => (
+                        <li key={index}>
+                            {item}
+                            <button onClick={() => removeItem(index)}> <FaRegTrashAlt /> </button>
+                        
+                        </li>
+                    ))}
+                </ul>
+            </div>
 
         </div>
         )

@@ -41,22 +41,24 @@ export default function Weather() {
             // Caso seja um retorno positivo setamos o Weather com o valor da "response"
             if(response.status === 200){
                 setWeather(response);
-                return true;
+                return response.data.name;
             }
 
         }
         catch(error) {
             console.log("Error ao usar o fetch no dado do clima", error)
         }
-        return false;
+        
+        return null;
     }
 
     // Ao clicar no botão irá fazer a consulta do clima
+    // Vamos verificar se a cidade existe
     const handleClick = async () => {
-        const isCityExists = await fetchWeather();
+        const cityName = await fetchWeather();
 
-        if(isCityExists){
-            setHistory([...history, city]);
+        if(cityName){
+            setHistory([...history, cityName]);
             setCity('');
         }
     }
@@ -94,6 +96,7 @@ export default function Weather() {
         return cloudy; 
     }
 
+    // Função para remover um item da lista
     const removeItem = (index) => {
         const update = history.filter((_, i) => i !== index);
         setHistory(update);

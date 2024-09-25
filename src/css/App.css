@@ -1,5 +1,4 @@
 .weather-container {
-  background-color: var(--yellow);
   height: 100dvh;
 
 }
@@ -25,7 +24,7 @@
 
 .button-container .weather-info{
   background-color: var(--black);
-  width: clamp(270px, 50%, 500px);
+  width: clamp(300px, 50%, 500px);
   height: 30%;
   color: var(--white);
   margin-top: 20px;

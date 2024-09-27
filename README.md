@@ -32,11 +32,11 @@ Desenvolver uma aplicação web com React que permita ao usuário consultar as c
 1. Clone o repositório:
 
    ```bash
-   git clone https://github.com/RCK04/it-att3
+   git clone https://github.com/RCK04/it-att4
 
 2. Acesse a pasta:
    ```bash
-   cd it-att3
+   cd it-att4
 
 3. Instale as dependências:
    ```bash

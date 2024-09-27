@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Form.css';
 import logo from '../../images/contact.png';
 import { FaFacebookSquare, FaYoutube, FaLinkedin } from "react-icons/fa";
@@ -8,6 +8,24 @@ import Button from '../Button/Button';
 
 
 function Form(){
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [message, setMessage] = useState('');
+
+    const sendForm = () => {
+        if(!name || !email || !message){
+            alert('Preencha todos os campos.')
+            return;
+        }
+
+        alert('Formulário enviado');
+
+        setName('');
+        setEmail('');
+        setMessage('');
+
+    }
+
     return (
         <div className='form'> 
             <div className="contact">
@@ -33,15 +51,15 @@ function Form(){
 
             <div className="submit-form">
                 <h4 className='third-text'>Entre em contato</h4>
-                <form action="">
-                    <Input type="text" label="Nome" placeholder="Escreva seu nome"></Input>
-                    <Input type="email" label="Email" placeholder="Escreva seu email"></Input>
+                <form>
+                    <Input type="text" label="Nome" placeholder="Escreva seu nome" value={name} onChange={(e) => setName(e.target.value)}></Input>
+                    <Input type="email" label="Email" placeholder="Escreva seu email" value={email} onChange={(e) => setEmail(e.target.value)}></Input>
 
                     <div className='input-box'>
-                        <textarea name="" id="message" cols="30" rows="10" ></textarea>
+                        <textarea name="" id="message" cols="30" rows="10" value={message} onChange={(e) => setMessage(e.target.value)}></textarea>
                     </div>
 
-                    <Button>
+                    <Button type='submit' onClick={sendForm}>
                         Enviar
                     </Button>
                 </form>

@@ -25,20 +25,9 @@ export default function Weather() {
 
     const[history, setHistory] = useState([]);
 
-    // Carregar o histórico ao iniciar
     useEffect(() => {
-        const loadHistory = localStorage.getItem('weatherHistory');
-        if (loadHistory) {
-            setHistory(JSON.parse(loadHistory));
-        }
-    }, []);
-
-    // Salvar o histórico no localStorage sempre que for atualizado
-    useEffect(() => {
-        if (history.length > 0) {
-            localStorage.setItem('weatherHistory', JSON.stringify(history));
-        }
-    }, [history]);
+        getHistory();
+    }, [])
 
     // Atualiza o estado da "city" com o valor que for colocado no input
     // o "event.target.value" será o novo valor
@@ -68,14 +57,20 @@ export default function Weather() {
         return null;
     }
 
+    // Utilizando do POST para adicionar o nome do local no histórico
     const addWeatherHistory = async (cityName) => {
         try {
+            const addNewItem = {
+                id: history.length + 1,
+                name: cityName
+            };
+
             const response = await axios.post
             (
-                'https://jsonplaceholder.typicode.com/posts'
+                'http://localhost:3005/history', addNewItem
             );
             if (response.status  === 201) {
-                setHistory([...history, cityName]);
+                setHistory([...history, addNewItem]);
             }
 
         } catch (error) {
@@ -93,12 +88,14 @@ export default function Weather() {
 
         const cityName = await fetchWeather();
 
-        if(cityName && history.includes(cityName)){
+        const isCityExist = history.some(item => item.name === cityName);
+
+        if(cityName && isCityExist){
             alert('Cidade já está no histórico.');
             return;
         }
 
-        if(cityName && !history.includes(cityName)){
+        if(cityName && !isCityExist){
             await addWeatherHistory(cityName);
             setCity('');
         }
@@ -141,7 +138,13 @@ export default function Weather() {
     const removeItem = (index) => {
         const update = history.filter((_, i) => i !== index);
         setHistory(update);  
+    }
 
+    const getHistory = async () => {
+
+        const response = await fetch('http://localhost:3005/history')
+        const data = await response.json();
+        setHistory(data);
     }
 
     return (

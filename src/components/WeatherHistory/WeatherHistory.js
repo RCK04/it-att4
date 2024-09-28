@@ -11,7 +11,7 @@ function WeatherHistory({ history, removeItem }) {
                 <ul>
                     {history.map((item, index) => (
                         <li key={index}>
-                            {item}
+                            {item.name}
                             <button onClick={() => removeItem(index)}> <FaRegTrashAlt /> </button>
                         
                         </li>

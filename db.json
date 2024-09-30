@@ -1,16 +1,24 @@
 {
   "history": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Paraíba"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Pernambuco"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Recife"
+    },
+    {
+      "id": 4,
+      "name": "Rússia"
+    },
+    {
+      "id": 5,
+      "name": "China"
     }
   ]
 }

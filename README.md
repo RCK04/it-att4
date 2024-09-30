@@ -42,7 +42,12 @@ Desenvolver uma aplicação web com React que permita ao usuário consultar as c
    ```bash
    npm install
 
-4. Execute a aplicação
+4. Use o comando do Json Server
+
+   ```
+   json-server --watch db.json --port 3005
+
+5. Execute a aplicação
    ```bash
    npm start
 

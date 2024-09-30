@@ -137,7 +137,7 @@ export default function Weather() {
     // Função para remover um item da lista
     const removeItem = (index) => {
         const update = history.filter((_, i) => i !== index);
-        setHistory(update);  
+        setHistory(update);
     }
 
     const getHistory = async () => {

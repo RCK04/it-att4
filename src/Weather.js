@@ -109,9 +109,6 @@ export default function Weather() {
     // Colocar a primeira letra da descrição retornada pela API sobre o clima em Maiúscula
     const capitalizeFirstLetter = (string) => {
         return string.charAt(0).toUpperCase() + string.slice(1);
-        // Exemplo com o slice
-        // teste -> T + este = Teste
-        //              1234
     }
 
     // Retornar uma imagem correspondente ao clima com base na descrição

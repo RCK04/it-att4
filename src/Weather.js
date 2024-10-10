@@ -18,24 +18,18 @@ import axios from 'axios';
 
 export default function Weather() {
 
-    // Utilização do Hook de useState para armazenar o nome da cidade e atualizar esse estado
     const [city, setCity] = useState('');
-     // Utilização do Hook de useState para armazenar os dados do clima pela API e para atualizar o estado
     const [weather, setWeather] = useState('');
-
     const[history, setHistory] = useState([]);
 
     useEffect(() => {
         getHistory();
     }, [])
 
-    // Atualiza o estado da "city" com o valor que for colocado no input
-    // o "event.target.value" será o novo valor
     const handleCityChange = (event) => {
         setCity(event.target.value);
     }
 
-    // Fazemos uma solicitação ao protocolo HTTP GET para a API do OpenWeatherMap usando o axios para obter esses dados do clima
     const fetchWeather = async () => {
         try{
             const response = await axios.get
@@ -43,7 +37,6 @@ export default function Weather() {
                 `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.REACT_APP_WEATHER_API_KEY}&lang=pt`
             );
             
-            // Caso seja um retorno positivo setamos o Weather com o valor da "response"
             if(response.status === 200){
                 setWeather(response);
                 return response.data.name;
@@ -57,7 +50,6 @@ export default function Weather() {
         return null;
     }
 
-    // Utilizando do POST para adicionar o nome do local no histórico
     const addWeatherHistory = async (cityName) => {
         try {
             const addNewItem = {
@@ -78,8 +70,6 @@ export default function Weather() {
         }
     }
         
-    // Ao clicar no botão irá fazer a consulta do clima
-    // Vamos verificar se a cidade existe
     const handleClick = async () => {
         if(!city){
             alert("Insira uma cidade no input.")
@@ -101,17 +91,14 @@ export default function Weather() {
         }
     }
 
-    // A API trás o valor da temperatura em Kelvin, então é feito a conversão para Celsius
     const kelvinToCelsius = (kelvin) => {
         return (kelvin - 273.15).toFixed(0) + "°";
     }
 
-    // Colocar a primeira letra da descrição retornada pela API sobre o clima em Maiúscula
     const capitalizeFirstLetter = (string) => {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
-    // Retornar uma imagem correspondente ao clima com base na descrição
     const getWeatherImage = (description) => {
         const lowerCaseDescription = description.toLowerCase();
     
@@ -131,7 +118,6 @@ export default function Weather() {
         return cloudy; 
     }
 
-    // Função para remover um item da lista
     const removeItem = (index) => {
         const update = history.filter((_, i) => i !== index);
         setHistory(update);
